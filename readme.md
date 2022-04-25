@@ -1,3 +1,3 @@
-#DCIT23 JAVA EXERCISES
+# DCIT23 JAVA EXERCISES
 
-These are exercises and activities from my introduction to java subject (DCIT23).
+Compilation of exercises and activities from my introduction to java class (DCIT23).
