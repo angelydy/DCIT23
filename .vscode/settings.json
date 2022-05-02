@@ -1,7 +1,8 @@
 {
   "git.ignoreLimitWarning": true,
   "java.project.sourcePaths": [
+    "Loop",
     "Factorial",
-    "Loop"
+    "Debugging"
   ]
 }
