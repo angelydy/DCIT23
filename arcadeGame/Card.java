@@ -8,6 +8,9 @@ public class Card {
     this.cardBal = 0;
     this.cardTickets = 0;
     this.id = (int) (Math.random() * 100);
+  }
+
+  public void cardInfo() {
     //print card info
     System.out.println("Card ID: " + this.id);
     System.out.println("Card Balance: " + this.cardBal);
@@ -29,8 +32,10 @@ public class Card {
   public int addCardBal(double amount) {
     if (amount > 0) {
       cardBal += amount;
+      cardInfo();
       return 1;
     } else {
+      cardInfo();
       return 0;
     }
   }
@@ -38,8 +43,10 @@ public class Card {
   public int deductCardBalance(double amount) {
     if (cardBal >= amount) {
       cardBal -= amount;
+      cardInfo();
       return 0;
     } else {
+      cardInfo();
       return -1;
     }
   }
@@ -72,12 +79,48 @@ public class Card {
     }
   }
 
-  public int requestPrize() {
-    if (cardTickets > 0) {
-      cardTickets--;
-      return 0;
+  public void requestPrize() {
+    String prize1 = "Huge Bear Stuff Toy";
+    int prize1Price = 300;
+    String prize3 = "Photo Album";
+    int prize3Price = 500;
+    String prize2 = "Aqua Flask Water Bottle";
+    int prize2Price = 1000;
+    String prize4 = "Mug";
+    int prize4Price = 200;
+
+    if (cardTickets >= prize1Price && cardTickets <= prize2Price) { 
+      deductCardTickets(prize1Price);
+      System.out.println("-------------------------------");
+      System.out.println("You have won a " + prize1);
+      System.out.println("Prize value: " + prize1Price);
+      cardInfo();
+    }  else if (cardTickets >= prize2Price && cardTickets <= prize3Price) {
+      deductCardTickets(prize1Price);
+      System.out.println("-------------------------------");
+      System.out.println("You have won a " + prize1);
+      System.out.println("Prize value: " + prize1Price);
+      cardInfo();
+    } else if (cardTickets >= prize3Price && cardTickets <= 2000) {
+      deductCardTickets(prize1Price);
+      System.out.println("-------------------------------");
+      System.out.println("You have won a " + prize1);
+      System.out.println("Prize value: " + prize1Price);
+      cardInfo();
+    } else if (cardTickets >=  prize4Price && cardTickets <= prize1Price) {
+      deductCardTickets(prize1Price);
+      System.out.println("-------------------------------");
+      System.out.println("You have won a " + prize1);
+      System.out.println("Prize value: " + prize1Price);
+      cardInfo();
+    }  else if (cardTickets <= 199) {
+      System.out.println("-------------------------------");
+      System.out.println("You do not have enough tickets to win a prize. You should have atleast 200 or more tickets.");
+      cardInfo();
     } else {
-      return -1;
+      System.out.println("-------------------------------");
+      System.out.println("You do not have enough tickets to win a prize");
+      cardInfo();
     }
   }
 }
