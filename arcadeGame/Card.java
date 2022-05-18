@@ -5,16 +5,19 @@ public class Card {
   private int cardTickets;
 
   public Card() {
-    this.cardBal = 0;
     this.cardTickets = 0;
     this.id = (int) (Math.random() * 100);
+    this.cardBal = terminals.loadCredits(this.id);
   }
 
   public void cardInfo() {
     //print card info
-    System.out.println("Card ID: " + this.id);
+    System.out.println("---------------------------------------");
+    System.out.println("CURRENT CARD STATUS:\n");
+    System.out.println("Card #: " + this.id);
     System.out.println("Card Balance: " + this.cardBal);
-    System.out.println("Tickets: " + this.cardTickets);
+    System.out.println("Tickets: " + this.cardTickets + "");
+    System.out.println("---------------------------------------\n");
   }
 
   public int getCardNumber() {
@@ -71,6 +74,7 @@ public class Card {
 
   public int transferCredits(Card otherCard, double amount) {
     if (cardBal >= amount) {
+      System.out.println("Transferring " + amount + " credits from card #" + this.id + " to card #" + otherCard.id);
       otherCard.addCardBal(amount);
       deductCardBalance(amount);
       return 0;
