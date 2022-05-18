@@ -3,6 +3,7 @@
   "java.project.sourcePaths": [
     "Loop",
     "Factorial",
-    "Debugging"
+    "Debugging",
+    "arcadeGame"
   ]
 }
