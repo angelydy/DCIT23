@@ -90,12 +90,12 @@ public class simpleGame {
     } else if (choice == 4) {
       System.out.println("\nThank you for playing with us!");
       card1.cardInfo();
-      System.exit(0);
     } else {
       System.out.println("Invalid choice. Please try again.");
     }
 
-    while (choice != 4) {
+    int a = 0;
+    while ( a < 5) {
       System.out.println("1. Rock \n2. Paper \n3. Scissor \n4. Exit\nPlease choose your choice: ");
       choice = input.nextInt();
       if (choice == 1) {
@@ -143,6 +143,7 @@ public class simpleGame {
           System.out.println("Computer chose Paper");
           System.out.println("You win! 50 tickets awarded");
           card1.addCardTickets(50);
+          card1.cardInfo();
         } else if (computerChoice == 3) {
           System.out.println("Computer chose Scissor");
           System.out.println("Draw! No tickets won.");
@@ -151,12 +152,11 @@ public class simpleGame {
       } else if (choice == 4) {
         System.out.println("\nThank you for playing with us!");
         card1.cardInfo();
-        System.exit(0);
       } else {
         System.out.println("Invalid choice. Please try again.");
       }
+      a++;
     } System.out.println("Thank you for playing with us!");
-    System.exit(0);
   }
 
   public void colorChooser(Card card1) {
@@ -169,12 +169,12 @@ public class simpleGame {
     
     int random = (int) (Math.random() * colors.length);
     if (color.equals(colors[random])) {
-      System.out.println("------------------------------------------------");
+      System.out.println("---------------------------------------");
       System.out.println("You win! Here are your 50 added tickets.");
       card1.addCardTickets(50);
       card1.cardInfo();
     } else {
-      System.out.println("------------------------------------------------");
+      System.out.println("---------------------------------------");
       System.out.println("Sorry, You lose!");
       card1.cardInfo();
     }
