@@ -34,10 +34,12 @@ public class Card {
   
   public int addCardBal(double amount) {
     if (amount > 0) {
+      amount *= 2;
       cardBal += amount;
       cardInfo();
       return 1;
     } else {
+      System.out.println("Invalid amount. Please try again.");
       cardInfo();
       return 0;
     }

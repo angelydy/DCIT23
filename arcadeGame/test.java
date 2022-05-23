@@ -15,9 +15,11 @@ public class test {
     Scanner input = new Scanner(System.in);
     int cardChoice = input.nextInt();
     if (cardChoice == 1) {
-      terminals t = new terminals(card1);
+      terminals t = new terminals(card1, card2);
+    } else if (cardChoice == 2) {
+      terminals t = new terminals(card2, card1);
     } else {
-      terminals t2 = new terminals(card2);
+      System.out.println("Invalid choice. Please try again.");
     }
   }
 }
