@@ -1,9 +1,10 @@
 {
   "git.ignoreLimitWarning": true,
   "java.project.sourcePaths": [
+    "arcadeGame",
     "Loop",
     "Factorial",
     "Debugging",
-    "arcadeGame"
+    "Campus"
   ]
 }
