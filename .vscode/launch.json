@@ -1,0 +1,70 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch mainClass",
+      "request": "launch",
+      "mainClass": "mainClass",
+      "projectName": "DCIT23_f5873bbb"
+    },
+    {
+      "type": "java",
+      "name": "Launch Current File",
+      "request": "launch",
+      "mainClass": "${file}"
+    },
+    {
+      "type": "java",
+      "name": "Launch CountChar",
+      "request": "launch",
+      "mainClass": "CountChar",
+      "projectName": "DCIT23_f5873bbb"
+    },
+    {
+      "type": "java",
+      "name": "Launch ScopeTest",
+      "request": "launch",
+      "mainClass": "ScopeTest",
+      "projectName": "DCIT23_f5873bbb"
+    },
+    {
+      "type": "java",
+      "name": "Launch SquareRoot",
+      "request": "launch",
+      "mainClass": "SquareRoot",
+      "projectName": "DCIT23_f5873bbb"
+    },
+    {
+      "type": "java",
+      "name": "Launch factorial",
+      "request": "launch",
+      "mainClass": "factorial",
+      "projectName": "DCIT23_f5873bbb"
+    },
+    {
+      "type": "java",
+      "name": "Launch isoscelesRectangle",
+      "request": "launch",
+      "mainClass": "isoscelesRectangle",
+      "projectName": "DCIT23_f5873bbb"
+    },
+    {
+      "type": "java",
+      "name": "Launch test",
+      "request": "launch",
+      "mainClass": "test",
+      "projectName": "DCIT23_f5873bbb"
+    },
+    {
+      "type": "java",
+      "name": "Launch testClass",
+      "request": "launch",
+      "mainClass": "testClass",
+      "projectName": "DCIT23_f5873bbb"
+    }
+  ]
+}
