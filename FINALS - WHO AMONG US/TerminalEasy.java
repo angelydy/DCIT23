@@ -91,7 +91,6 @@ public class TerminalEasy extends Terminal {  //abstracts to Terminal.java
                                     crewmembers.add(crewKiller); 
                                     break;
                                 }
-
                             }         
                             
                             System.out.println("Remaining Task(s): " + tasksNum);

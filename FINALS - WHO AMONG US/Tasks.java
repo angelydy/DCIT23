@@ -186,7 +186,7 @@ public void playQuizGame() {
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
-                    status = false;
+                    status = true;
                     break;
                 }
             } 
