@@ -7,7 +7,7 @@ public class TerminalNormal extends Terminal {
     int tasksNum;
     
     
-    TerminalNormal (int impostorNum, int crewNum, int tasksNum){
+    TerminalNormal (int impostorNum, int crewNum, int tasksNum, Tasks ta){
         this.impostorNum = impostorNum;
         this.crewNum = crewNum;
         this.tasksNum = tasksNum;
@@ -26,9 +26,11 @@ public class TerminalNormal extends Terminal {
     
         public void actionBar(Tasks ta){
     
-            String crewMemberNormal [] = {"Madeline", "Austin", "Sero", "Bindy", "Louie", "Mikey", "Becky",
+        String crewMemberNormal [] = {"Madeline", "Austin", "Sero", "Bindy", "Louie", "Mikey", "Becky",
                                         "Carl", "Daniel", "Michael", "Anna", "Nick"};
- 
+        String crewMemberNormal1 [] = {"Madeline", "Austin", "Sero", "Bindy", "Louie", "Mikey", "Becky",
+                                        "Carl", "Daniel", "Michael", "Anna", "Nick"}; // create new to maintain the name of the crew
+        ArrayList crewmembers = new ArrayList();               
         Random rand = new Random();
 
         int impostorGen1 = rand.nextInt(crewMemberNormal.length);
@@ -38,11 +40,9 @@ public class TerminalNormal extends Terminal {
             impostorGen1 = rand.nextInt(crewMemberNormal.length);
             impostorGen2 = rand.nextInt(crewMemberNormal.length);
         }
-
         
         System.out.println(crewMemberNormal[impostorGen1]);
         System.out.println(crewMemberNormal[impostorGen2]);
-        
 
         while (crewNum > 3 && tasksNum > 0){
         
@@ -52,7 +52,7 @@ public class TerminalNormal extends Terminal {
             int actionNum = sc.nextInt();
 
             if (actionNum == 1){
-                //System.out.println(crewmembers);
+                System.out.println(crewmembers);
                 System.out.println("\n");
                 System.out.println("--------CREWMEMBER LIST-------");
                 for (int i = 0 ; i < crewMemberNormal.length; i++){
@@ -70,20 +70,31 @@ public class TerminalNormal extends Terminal {
 
                     if (playerTask == 0){
                         ta.playQuizGame();
-                        tasksNum -=1;
-                        tasksDone += 1;
-                        
-                        int crewKiller1 = (int)(Math.random()* crewNum);
-                        int crewKiller2 = (int)(Math.random()* crewNum);
 
+                        if (ta.status == true) {
+                            tasksNum -=1;
+                            tasksDone += 1;
+
+                            int crewKiller1 = (int)(Math.random()* crewNum);
+                            int crewKiller2 = (int)(Math.random()* crewNum);
+                            crewmembers.add(crewKiller1);
+                            crewmembers.add(crewKiller2);
                         
-                        while (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
-                            crewKiller1 = (int)(Math.random()* crewNum);
-                            crewKiller2 = (int)(Math.random()* crewNum);
-                        }
+                            while (crewKiller1 == crewKiller2 || crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 ||crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
+                                crewKiller1 = (int)(Math.random()* crewNum);
+                                crewKiller2 = (int)(Math.random()* crewNum);
+                                crewmembers.add(crewKiller1);
+                                crewmembers.add(crewKiller2);
+
+
+                                if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
+                                    crewmembers.add(crewKiller1);
+                                    crewmembers.add(crewKiller2);
+                                    break;
+                                }
+                            }
                         
                         System.out.println("Remaining Task(s): " + tasksNum);
-
 
                         System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
                         crewNum -= 1;
@@ -103,15 +114,28 @@ public class TerminalNormal extends Terminal {
 
                         System.out.print( "Insert the index of who you think the impostor is:  ");
                         int impostorGuess = sc.nextInt();
+
+                        while(crewmembers.contains(impostorGuess)){   /// loop that limits the user in killing the dead or ejected people
+                            System.out.println(crewMemberNormal1[impostorGuess]+ " is already Dead \n");
+                            System.out.print( "Insert the index of who you think the impostor is:  ");
+                            impostorGuess = sc.nextInt();
+                            
+                            if (!crewmembers.contains(impostorGuess)){
+                                crewmembers.add(impostorGuess);
+                                break;
+                            }
+                        }
                             if (impostorGuess != impostorGen1 || impostorGuess != impostorGen2){
                                 System.out.println(crewMemberNormal[impostorGuess] + " is not the impostor!");
                                 crewMemberNormal[impostorGuess] = crewMemberNormal[impostorGuess] + " [EJECTED]"; 
+                                crewmembers.add(impostorGuess);
+
                                  crewNum -= 1;
                                  System.out.println("\n");
-                                 System.out.println("Number of Crewmates Left: " + crewMemberNormal.length);                       
+                                 System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
 
                             }
-                            else if (impostorGuess == impostorGen1 || impostorGuess == impostorGen2){
+                            if (impostorGuess == impostorGen1 || impostorGuess == impostorGen2){
                                 System.out.println(crewMemberNormal[impostorGuess] + " is ejected!");
                                 System.out.println(crewMemberNormal[impostorGuess] + " is an impostor!");
                                 crewMemberNormal[impostorGuess] = crewMemberNormal[impostorGuess] + " [EJECTED] [IMPOSTOR]"; 
@@ -126,24 +150,67 @@ public class TerminalNormal extends Terminal {
                                 break;
                             }
 
+                        }
+                        else {
+                            System.out.println("YOU FAILED A TASK! You cannot guess in this round. \n");
+
+                            int crewKiller1 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
+                            int crewKiller2 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
+                            crewmembers.add(crewKiller1);
+                            crewmembers.add(crewKiller2);
+
+                            // Loop that Limits the repetition of killed crew and suiciding impostors
+                            while (crewKiller1 == crewKiller2 || crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 ||crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
+                                crewKiller1 = (int)(Math.random()* crewNum);
+                                crewKiller2 = (int)(Math.random()* crewNum);
+                                crewmembers.add(crewKiller1);
+                                crewmembers.add(crewKiller2);
+
+                                if (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
+                                } 
+
+                                if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
+                                    crewmembers.add(crewKiller1);
+                                    crewmembers.add(crewKiller2);
+                                    break;
+                                }
+                            }
+                        }
                     }
                     
                     else if (playerTask == 1){
                         ta.jumbledWords();
-                        tasksNum -=1;
-                        tasksDone += 1;
                         
-                        int crewKiller1 = (int)(Math.random()* crewNum);
-                        int crewKiller2 = (int)(Math.random()* crewNum);
+                        if (ta.status == true) {
+                            tasksNum -=1;
+                            tasksDone += 1;
 
+                            int crewKiller1 = (int)(Math.random()* crewNum);
+                            int crewKiller2 = (int)(Math.random()* crewNum);
+                            crewmembers.add(crewKiller1);
+                            crewmembers.add(crewKiller2);
                         
-                        while (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
-                            crewKiller1 = (int)(Math.random()* crewNum);
-                            crewKiller2 = (int)(Math.random()* crewNum);
-                        }
+                            while (crewKiller1 == crewKiller2 || crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 ||crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
+                                crewKiller1 = (int)(Math.random()* crewNum);
+                                crewKiller2 = (int)(Math.random()* crewNum);
+                                crewmembers.add(crewKiller1);
+                                crewmembers.add(crewKiller2);
+
+                                if (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
+                                } 
+
+                                if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
+                                    crewmembers.add(crewKiller1);
+                                    crewmembers.add(crewKiller2);
+                                    break;
+                                }
+                            }
                         
                         System.out.println("Remaining Task(s): " + tasksNum);
-
 
                         System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
                         crewNum -= 1;
@@ -163,15 +230,28 @@ public class TerminalNormal extends Terminal {
 
                         System.out.print( "Insert the index of who you think the impostor is:  ");
                         int impostorGuess = sc.nextInt();
+
+                        while(crewmembers.contains(impostorGuess)){   /// loop that limits the user in killing the dead or ejected people
+                            System.out.println(crewMemberNormal1[impostorGuess]+ " is already Dead \n");
+                            System.out.print( "Insert the index of who you think the impostor is:  ");
+                            impostorGuess = sc.nextInt();
+                            
+                            if (!crewmembers.contains(impostorGuess)){
+                                break;
+                            }
+                        }
+
                             if (impostorGuess != impostorGen1 || impostorGuess != impostorGen2){
                                 System.out.println(crewMemberNormal[impostorGuess] + " is not the impostor!");
                                 crewMemberNormal[impostorGuess] = crewMemberNormal[impostorGuess] + " [EJECTED]"; 
+                                crewmembers.add(impostorGuess);
+
                                  crewNum -= 1;
                                  System.out.println("\n");
-                                 System.out.println("Number of Crewmates Left: " + crewMemberNormal.length);                       
+                                 System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
 
                             }
-                            else if (impostorGuess == impostorGen1 || impostorGuess == impostorGen2){
+                            if (impostorGuess == impostorGen1 || impostorGuess == impostorGen2){
                                 System.out.println(crewMemberNormal[impostorGuess] + " is ejected!");
                                 System.out.println(crewMemberNormal[impostorGuess] + " is an impostor!");
                                 crewMemberNormal[impostorGuess] = crewMemberNormal[impostorGuess] + " [EJECTED] [IMPOSTOR]"; 
@@ -185,26 +265,69 @@ public class TerminalNormal extends Terminal {
                                 }
                                 break;
                             }
-                    }
+
+                        }
+                            else {
+                                System.out.println("YOU FAILED A TASK! You cannott guess in this round. \n");
+    
+                                int crewKiller1 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
+                                int crewKiller2 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
+                                crewmembers.add(crewKiller1);
+                                crewmembers.add(crewKiller2);
+    
+                                // Loop that Limits the repetition of killed crew and suiciding impostors
+                                while (crewKiller1 == crewKiller2 || crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 ||crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
+                                    crewmembers.add(crewKiller1);
+                                    crewmembers.add(crewKiller2);
+
+                                    if (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
+                                        crewKiller1 = (int)(Math.random()* crewNum);
+                                        crewKiller2 = (int)(Math.random()* crewNum);
+                                    } 
+    
+                                    if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
+                                        crewmembers.add(crewKiller1);
+                                        crewmembers.add(crewKiller2);
+                                        break;
+                                    }
+                                }
+                            }
+                        }
                     
                     else if (playerTask == 2){
                         ta.riddleGame();
-                        tasksNum -=1;
-                        tasksDone += 1;
-                        
-                        int crewKiller1 = (int)(Math.random()* crewNum);
-                        int crewKiller2 = (int)(Math.random()* crewNum);
+                        if (ta.status == true) {
+                            tasksNum -=1;
+                            tasksDone += 1;
 
-                        
-                        while (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
-                            crewKiller1 = (int)(Math.random()* crewNum);
-                            crewKiller2 = (int)(Math.random()* crewNum);
+                            int crewKiller1 = (int)(Math.random()* crewNum);
+                            int crewKiller2 = (int)(Math.random()* crewNum);
+                            crewmembers.add(crewKiller1);
+                            crewmembers.add(crewKiller2);
 
+                            //if the member is already a crewkiller 
+                            
+                            while (crewKiller1 == crewKiller2 || crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 ||crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
+                                crewKiller1 = (int)(Math.random()* crewNum);
+                                crewKiller2 = (int)(Math.random()* crewNum);
+                                crewmembers.add(crewKiller1);
+                                crewmembers.add(crewKiller2);
 
-                        }
+                                if (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
+                                } 
+
+                                if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
+                                    crewmembers.add(crewKiller1);
+                                    crewmembers.add(crewKiller2);
+                                    break;
+                                }
+                            }
                         
                         System.out.println("Remaining Task(s): " + tasksNum);
-
 
                         System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
                         crewNum -= 1;
@@ -224,15 +347,28 @@ public class TerminalNormal extends Terminal {
 
                         System.out.print( "Insert the index of who you think the impostor is:  ");
                         int impostorGuess = sc.nextInt();
+
+                        while(crewmembers.contains(impostorGuess)){   /// loop that limits the user in killing the dead or ejected people
+                            System.out.println(crewMemberNormal1[impostorGuess]+ " is already Dead \n");
+                            System.out.print( "Insert the index of who you think the impostor is:  ");
+                            impostorGuess = sc.nextInt();
+                            
+                            if (!crewmembers.contains(impostorGuess)){
+                                break;
+                            }
+                        }
+
                             if (impostorGuess != impostorGen1 || impostorGuess != impostorGen2){
                                 System.out.println(crewMemberNormal[impostorGuess] + " is not the impostor!");
                                 crewMemberNormal[impostorGuess] = crewMemberNormal[impostorGuess] + " [EJECTED]"; 
+                                crewmembers.add(impostorGuess);
+
                                  crewNum -= 1;
                                  System.out.println("\n");
-                                 System.out.println("Number of Crewmates Left: " + crewMemberNormal.length);                       
+                                 System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
 
                             }
-                            else if (impostorGuess == impostorGen1 || impostorGuess == impostorGen2){
+                            if(impostorGuess == impostorGen1 || impostorGuess == impostorGen2){
                                 System.out.println(crewMemberNormal[impostorGuess] + " is ejected!");
                                 System.out.println(crewMemberNormal[impostorGuess] + " is an impostor!");
                                 crewMemberNormal[impostorGuess] = crewMemberNormal[impostorGuess] + " [EJECTED] [IMPOSTOR]"; 
@@ -246,24 +382,67 @@ public class TerminalNormal extends Terminal {
                                 }
                                 break;
                             }
+
+                        }
+                        else {
+                            System.out.println("YOU FAILED A TASK! You cannot guess in this round. \n");
+
+                            int crewKiller1 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
+                            int crewKiller2 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
+                            crewmembers.add(crewKiller1);
+                            crewmembers.add(crewKiller2);
+
+                            // Loop that Limits the repetition of killed crew and suiciding impostors
+                            while (crewKiller1 == crewKiller2 || crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 ||crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
+                                crewKiller1 = (int)(Math.random()* crewNum);
+                                crewKiller2 = (int)(Math.random()* crewNum);
+                                crewmembers.add(crewKiller1);
+                                crewmembers.add(crewKiller2);
+
+                                if (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
+                                } 
+
+                                if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
+                                    crewmembers.add(crewKiller1);
+                                    crewmembers.add(crewKiller2);
+                                    break;
+                                }
+                            }
+                        }
                 }
 
                     else if (playerTask == 3){
                     ta.mathGame();
-                    tasksNum -=1;
-                    tasksDone += 1;
-                    
-                    int crewKiller1 = (int)(Math.random()* crewNum);
-                    int crewKiller2 = (int)(Math.random()* crewNum);
+                    if (ta.status == true) {
+                        tasksNum -=1;
+                        tasksDone += 1;
 
-                    
-                    while (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
-                        crewKiller1 = (int)(Math.random()* crewNum);
-                        crewKiller2 = (int)(Math.random()* crewNum);
-                    }
+                        int crewKiller1 = (int)(Math.random()* crewNum);
+                        int crewKiller2 = (int)(Math.random()* crewNum);
+                        crewmembers.add(crewKiller1);
+                        crewmembers.add(crewKiller2);
+
+                        while (crewKiller1 == crewKiller2 || crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 ||crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
+                            crewKiller1 = (int)(Math.random()* crewNum);
+                            crewKiller2 = (int)(Math.random()* crewNum);
+                            crewmembers.add(crewKiller1);
+                            crewmembers.add(crewKiller2);
+
+                            if (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
+                                crewKiller1 = (int)(Math.random()* crewNum);
+                                crewKiller2 = (int)(Math.random()* crewNum);
+                            } 
+
+                            if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
+                                crewmembers.add(crewKiller1);
+                                crewmembers.add(crewKiller2);
+                                break;
+                            }
+                        }
                     
                     System.out.println("Remaining Task(s): " + tasksNum);
-
 
                     System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
                     crewNum -= 1;
@@ -283,15 +462,28 @@ public class TerminalNormal extends Terminal {
 
                     System.out.print( "Insert the index of who you think the impostor is:  ");
                     int impostorGuess = sc.nextInt();
+
+                    while(crewmembers.contains(impostorGuess)){   /// loop that limits the user in killing the dead or ejected people
+                        System.out.println(crewMemberNormal1[impostorGuess]+ " is already Dead \n");
+                        System.out.print( "Insert the index of who you think the impostor is:  ");
+                        impostorGuess = sc.nextInt();
+                        
+                        if (!crewmembers.contains(impostorGuess)){
+                            break;
+                        }
+                    }
+
                         if (impostorGuess != impostorGen1 || impostorGuess != impostorGen2){
                             System.out.println(crewMemberNormal[impostorGuess] + " is not the impostor!");
                             crewMemberNormal[impostorGuess] = crewMemberNormal[impostorGuess] + " [EJECTED]"; 
+                            crewmembers.add(impostorGuess);
+
                              crewNum -= 1;
                              System.out.println("\n");
-                             System.out.println("Number of Crewmates Left: " + crewMemberNormal.length);                       
+                             System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
 
                         }
-                        else if (impostorGuess == impostorGen1 || impostorGuess == impostorGen2){
+                        if (impostorGuess == impostorGen1 || impostorGuess == impostorGen2){
                             System.out.println(crewMemberNormal[impostorGuess] + " is ejected!");
                             System.out.println(crewMemberNormal[impostorGuess] + " is an impostor!");
                             crewMemberNormal[impostorGuess] = crewMemberNormal[impostorGuess] + " [EJECTED] [IMPOSTOR]"; 
@@ -305,6 +497,35 @@ public class TerminalNormal extends Terminal {
                             }
                             break;
                         }
+
+                    }
+                    else {
+                        System.out.println("YOU FAILED A TASK! You cannot guess in this round. \n");
+
+                        int crewKiller1 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
+                        int crewKiller2 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
+                        crewmembers.add(crewKiller1);
+                        crewmembers.add(crewKiller2);
+
+                        // Loop that Limits the repetition of killed crew and suiciding impostors
+                        while (crewKiller1 == crewKiller2 || crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 ||crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
+                            crewKiller1 = (int)(Math.random()* crewNum);
+                            crewKiller2 = (int)(Math.random()* crewNum);
+                            crewmembers.add(crewKiller1);
+                            crewmembers.add(crewKiller2);
+
+                            if (crewKiller1 == impostorGen1 || crewKiller2 == impostorGen2){
+                                crewKiller1 = (int)(Math.random()* crewNum);
+                                crewKiller2 = (int)(Math.random()* crewNum);
+                            } 
+
+                            if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
+                                crewmembers.add(crewKiller1);
+                                crewmembers.add(crewKiller2);
+                                break;
+                            }
+                        }
+                    }
             }
 
                 }

@@ -1,11 +1,12 @@
-    import java.util.*;
+import java.util.*;
+
 public class Main {
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
 
         Tasks ta = new Tasks();
         Terminal te = new TerminalEasy(1, 7,6, ta);
-        Terminal tn = new TerminalNormal(2, 12,6);
+        Terminal tn = new TerminalNormal(2, 12,6, ta);
         Terminal th = new TerminalHard(3, 15,5);
 
         te.showTitle1();
@@ -60,7 +61,6 @@ public class Main {
 
                 System.out.println("------- DO YOU WANT TO PLAY AGAIN? --------");
                 playChoice = sc.nextInt();
-                
             } 
         
         }

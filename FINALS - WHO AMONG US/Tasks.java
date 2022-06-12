@@ -28,11 +28,11 @@ public void playQuizGame() {
             String answer = input.next();
             if (!answer.equalsIgnoreCase("liquid")){
                 System.out.println("You have entered an incorrect answer.");
-                status = true;
+                status = false;
             }
             else {
                 System.out.println("You have entered a correct answer.");
-                status = false;
+                status = true;
                 break;
             }
         }
@@ -46,11 +46,11 @@ public void playQuizGame() {
                 int answer = input.nextInt();
                 if (answer != 9){
                     System.out.println("You have entered an incorrect answer.");
-                    status = true;
+                    status = false;
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
-                    status = false;
+                    status = true;
                     break;
                 }
             } 
@@ -63,11 +63,11 @@ public void playQuizGame() {
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("hot")){
                     System.out.println("You have entered an incorrect answer.");
-                    status = true;
+                    status = false;
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
-                    status = false;
+                    status = true;
                     break;
                 }
             } 
@@ -80,11 +80,11 @@ public void playQuizGame() {
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("paper")){
                 System.out.println("You have entered an incorrect answer.");
-                status = true;
+                status = false;
                 }
                 else {
                 System.out.println("You have entered a correct answer.");
-                status = false;
+                status = true;
                 break;
                 }
             } 
@@ -97,11 +97,11 @@ public void playQuizGame() {
                 int answer = input.nextInt();
                 if (answer % 2 != 0){
                     System.out.println("You have entered an incorrect answer.");
-                    status = true;
+                    status = false;
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
-                    status = false;
+                    status = true;
                     break;
                 }
             } 
@@ -114,11 +114,11 @@ public void playQuizGame() {
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("Blackboard")){
                     System.out.println("You have entered an incorrect answer.");
-                    status = true;
+                    status = false;
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
-                    status = false;
+                    status = true;
                     break;
                 }
             } 
@@ -131,11 +131,11 @@ public void playQuizGame() {
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("scissor")){
                     System.out.println("You have entered an incorrect answer.");
-                    status = true;
+                    status = false;
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
-                    status = false;
+                    status = true;
                     break;
                 }
             } 
@@ -148,11 +148,11 @@ public void playQuizGame() {
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("yellow")){
                     System.out.println("You have entered an incorrect answer.");
-                    status = true;
+                    status = false;
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
-                    status = false;
+                    status = true;
                     break;
                 }
             } 
@@ -165,11 +165,11 @@ public void playQuizGame() {
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("water")){
                     System.out.println("You have entered an incorrect answer.");
-                    status = true;
+                    status = false;
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
-                    status = false;
+                    status = true;
                     break;
                 }
             } 
@@ -182,7 +182,7 @@ public void playQuizGame() {
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("plural")){
                     System.out.println("You have entered an incorrect answer.");
-                    status = true;
+                    status = false;
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
