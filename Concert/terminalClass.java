@@ -1,9 +1,11 @@
 import java.util.Scanner;
 
-public class terminal extends schedule {
-  
-  public terminal() {
-    while (true) {                                                                                                                                         
+public class terminalClass extends schedule {
+
+  public terminalClass() {
+    Scanner input = new Scanner(System.in);
+
+    while (true) {
       System.out.println("\n████████╗██╗ ██████╗██╗  ██╗███████╗████████╗    ██████╗ ███████╗███████╗███████╗██████╗ ██╗   ██╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗");
       System.out.println("╚══██╔══╝██║██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝    ██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗██║   ██║██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║");
       System.out.print("     ██║   ██║██║     █████╔╝ █████╗     ██║       ██████╔╝█████╗  ███████╗█████╗  ██████╔╝██║   ██║███████║   ██║   ██║██║   ██║██╔██╗ ██║");
@@ -14,7 +16,6 @@ public class terminal extends schedule {
       System.out.println("1. Economy $20.00");
       System.out.println("2. VIP $100.00\n");
 
-      Scanner input = new Scanner(System.in);
       int ticketType = input.nextInt();
 
       while ( ticketType != 1 && ticketType != 2 ) {
@@ -35,9 +36,11 @@ public class terminal extends schedule {
         }
       } 
 
+      super.setAvailableSlot(10);
+
       System.out.println("\nPick a schedule: ");
-      System.out.println("1. 8:00 AM" + "(" + super.getAvailableSlot() + " available)");
-      System.out.println("2. 3:00 PM" + super.getAvailableSlot() + " available");
+      System.out.println("1. 8:00 AM" + " (" + super.getAvailableSlot() + " available)");
+      System.out.println("2. 3:00 PM" + " (" + super.getAvailableSlot() + " available)");
       int schedule = input.nextInt();
 
       while ( schedule != 1 && schedule != 2 ) {
@@ -68,25 +71,22 @@ public class terminal extends schedule {
       }
 
       //shows summary of transaction
-      System.out.println("\n\t--------------------------------------------------------------------------");
-      System.out.println("\t ███████ ██    ██ ███    ███ ███    ███  █████  ██████  ██    ██");
-      System.out.println("\t ███████ ██    ██ ███    ███ ███    ███  █████  ██████  ██    ██");
-      System.out.println("\t ██      ██    ██ ████  ████ ████  ████ ██   ██ ██   ██  ██  ██  ██");
-      System.out.println("\t ███████ ██    ██ ██ ████ ██ ██ ████ ██ ███████ ██████    ████");
-      System.out.println("\t ███████ ██    ██ ██ ████ ██ ██ ████ ██ ███████ ██████    ████");
-      System.out.println("\t      ██ ██    ██ ██  ██  ██ ██  ██  ██ ██   ██ ██   ██    ██    ██");
-      System.out.println("\t ███████  ██████  ██      ██ ██      ██ ██   ██ ██   ██    ██\n");
-      System.out.println("\t\t Ticket Type: ");
-      System.out.println("\t\t " + super.getType());
-      System.out.println("\n\t\tSchedule: ");
-      System.out.println("\t\t " + super.getTime());
-      System.out.println("\n\t\tNo. of Tickets: ");
-      System.out.println("\t\t " + super.getAmount());
+      System.out.println("\n███████ ██    ██ ███    ███ ███    ███  █████  ██████  ██    ██");
+      System.out.println("███████ ██    ██ ███    ███ ███    ███  █████  ██████  ██    ██");
+      System.out.println("██      ██    ██ ████  ████ ████  ████ ██   ██ ██   ██  ██  ██  ██");
+      System.out.println("███████ ██    ██ ██ ████ ██ ██ ████ ██ ███████ ██████    ████");
+      System.out.println("███████ ██    ██ ██ ████ ██ ██ ████ ██ ███████ ██████    ████");
+      System.out.println("     ██ ██    ██ ██  ██  ██ ██  ██  ██ ██   ██ ██   ██    ██    ██");
+      System.out.println("███████  ██████  ██      ██ ██      ██ ██   ██ ██   ██    ██\n");
+      System.out.println("\n Ticket Type: ");
+      System.out.println(super.getType());
+      System.out.println("\nSchedule: ");
+      System.out.println(super.getTime());
+      System.out.println("\nNo. of Tickets: ");
+      System.out.println(super.getAmount());
       super.pay();
       super.change();
-      System.out.println("\t--------------------------------------------------------------------------");
-
-      System.out.println("Buy Again? (Y/N)");
+      System.out.println("\nBuy Again? (Y/N)");
       String buyAgain = input.next();
       if (buyAgain.equals("Y") || buyAgain.equals("y")) {
         continue;

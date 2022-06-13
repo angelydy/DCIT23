@@ -3,7 +3,7 @@ public class ticket extends payment {
   private int amount;
   private double price;
   
-  public ticket(int totalAmount) {
+  public ticket() {
     super.setTotalAmount(getPrice() * getAmount());
   }
 

@@ -13,23 +13,23 @@ public class payment {
   }
 
   public void pay() {
-    System.out.println("\n\t\tAmount to pay is: $" + totalAmount);
+    System.out.println("\nAmount to pay is: $" + totalAmount);
   }
 
   public void change() {
     Scanner input = new Scanner(System.in);
-    System.out.println("\n\t\tEnter Amount to Pay:");
+    System.out.println("\nEnter Amount to Pay:");
     double payment = input.nextDouble();
 
     while (payment < totalAmount) {
-      System.out.println("\n\t\tSorry you did not pay enough, please try again ");
-      System.out.println("Enter Amount to Pay:");
+      System.out.println("\nSorry you did not pay enough, please try again ");
+      System.out.println("\nEnter Amount to Pay:");
       payment = input.nextDouble();
     }
 
     if (payment > getTotalAmount()) {
       change = payment - getTotalAmount();
-      System.out.println("Transaction successful your change is: $" + change);
+      System.out.println("\nTransaction successful your change is: $" + change);
     }
   }
 }
