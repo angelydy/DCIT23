@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
 public class payment {
-  private int totalAmount;
+  private double totalAmount;
   private double change;
 
-  public int getTotalAmount() {
+  public double getTotalAmount() {
     return totalAmount;
   }
 
-  public void setTotalAmount(int totalAmount) {
+  public void setTotalAmount(double totalAmount) {
     this.totalAmount = totalAmount;
   }
 
@@ -27,8 +27,8 @@ public class payment {
       payment = input.nextDouble();
     }
 
-    if (payment > totalAmount) {
-      change = payment - totalAmount;
+    if (payment > getTotalAmount()) {
+      change = payment - getTotalAmount();
       System.out.println("Transaction successful your change is: $" + change);
     }
   }

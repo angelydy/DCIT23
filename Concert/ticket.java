@@ -1,12 +1,11 @@
 public class ticket extends payment {
-
+  private String type;
+  private int amount;
+  private double price;
+  
   public ticket(int totalAmount) {
     super.setTotalAmount(getPrice() * getAmount());
   }
-
-  private String type;
-  private int amount;
-  private int price;
 
   public String getType() {
     return type;
@@ -24,11 +23,11 @@ public class ticket extends payment {
     this.amount = amount;
   }
 
-  public void setPrice(int price) {
+  public void setPrice(double price) {
     this.price = price;
   }
 
-  public int getPrice() {
+  public double getPrice() {
     return price;
   }
 }

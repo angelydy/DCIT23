@@ -26,11 +26,11 @@ public class terminal extends schedule {
 
         if (ticketType == 1) {
           super.setType("Ticket Type: Economy");
-          super.setPrice(20);
+          super.setPrice(20.00);
           break;
         } else if (ticketType == 2) {
           super.setType("Ticket Type: VIP");
-          super.setPrice(100);
+          super.setPrice(100.00);
           break;
         }
       } 
@@ -85,6 +85,14 @@ public class terminal extends schedule {
       super.pay();
       super.change();
       System.out.println("\t--------------------------------------------------------------------------");
+
+      System.out.println("Buy Again? (Y/N)");
+      String buyAgain = input.next();
+      if (buyAgain.equals("Y") || buyAgain.equals("y")) {
+        continue;
+      } else {
+        break;
+      }
     }
   }
 }
