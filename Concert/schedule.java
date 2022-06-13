@@ -1,10 +1,11 @@
-public class schedule{
+public class schedule extends ticket{
   private String time;
   private int availableSlot;
-
+  
   public schedule(String time, int availableSlot, String ticketType) {
     this.time = time;
     this.availableSlot = availableSlot;
+    super.setType(ticketType);
   }
 
   public String getTime() {

@@ -1,13 +1,8 @@
 import java.util.Scanner;
 
 public class payment {
-  //get the total amount to be paid from ticket class
   private int totalAmount;
-  private int change;
-
-  public payment(int totalAmount) {
-    this.totalAmount = totalAmount;
-  }
+  private double change;
 
   public int getTotalAmount() {
     return totalAmount;
@@ -18,13 +13,23 @@ public class payment {
   }
 
   public void pay() {
-    System.out.println("Amount to pay is: $" + totalAmount);
+    System.out.println("\n\t\tAmount to pay is: $" + totalAmount);
   }
 
   public void change() {
     Scanner input = new Scanner(System.in);
-    int payment = input.nextInt();
-    change = payment - totalAmount;
-    System.out.println("Transaction successful your change is: $" + change);
+    System.out.println("\n\t\tEnter Amount to Pay:");
+    double payment = input.nextDouble();
+
+    while (payment < totalAmount) {
+      System.out.println("\n\t\tSorry you did not pay enough, please try again ");
+      System.out.println("Enter Amount to Pay:");
+      payment = input.nextDouble();
+    }
+
+    if (payment > totalAmount) {
+      change = payment - totalAmount;
+      System.out.println("Transaction successful your change is: $" + change);
+    }
   }
 }

@@ -1,11 +1,12 @@
-public class ticket extends schedule{
+public class ticket extends payment {
+
+  public ticket(int totalAmount) {
+    super.setTotalAmount(getPrice() * getAmount());
+  }
+
   private String type;
   private int amount;
-
-  public ticket(String type, int amount) {
-    this.type = type;
-    this.amount = amount;
-  }
+  private int price;
 
   public String getType() {
     return type;
@@ -21,5 +22,13 @@ public class ticket extends schedule{
 
   public void setAmount(int amount) {
     this.amount = amount;
+  }
+
+  public void setPrice(int price) {
+    this.price = price;
+  }
+
+  public int getPrice() {
+    return price;
   }
 }

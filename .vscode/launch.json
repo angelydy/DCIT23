@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch concertMain",
+      "request": "launch",
+      "mainClass": "concertMain",
+      "projectName": "DCIT23_f5873bbb"
+    },
+    {
+      "type": "java",
       "name": "Launch startGame",
       "request": "launch",
       "mainClass": "startGame",
