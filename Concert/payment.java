@@ -13,12 +13,12 @@ public class payment {
   }
 
   public void pay() {
-    System.out.println("\nAmount to pay is: $" + totalAmount);
+    System.out.printf("\nAmount to pay is: $%.2f", totalAmount);
   }
 
   public void change() {
     Scanner input = new Scanner(System.in);
-    System.out.println("\nEnter Amount to Pay:");
+    System.out.println("\n\nEnter Amount to Pay:");
     double payment = input.nextDouble();
 
     while (payment < totalAmount) {
@@ -29,7 +29,7 @@ public class payment {
 
     if (payment > getTotalAmount()) {
       change = payment - getTotalAmount();
-      System.out.println("\nTransaction successful your change is: $" + change);
+      System.out.printf("\nTransaction successful, your change is: $%.2f", change);
     }
   }
 }

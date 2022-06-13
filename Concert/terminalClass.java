@@ -8,9 +8,9 @@ public class terminalClass extends schedule {
     while (true) {
       System.out.println("\n████████╗██╗ ██████╗██╗  ██╗███████╗████████╗    ██████╗ ███████╗███████╗███████╗██████╗ ██╗   ██╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗");
       System.out.println("╚══██╔══╝██║██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝    ██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗██║   ██║██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║");
-      System.out.print("     ██║   ██║██║     █████╔╝ █████╗     ██║       ██████╔╝█████╗  ███████╗█████╗  ██████╔╝██║   ██║███████║   ██║   ██║██║   ██║██╔██╗ ██║");
+      System.out.println("   ██║   ██║██║     █████╔╝ █████╗     ██║       ██████╔╝█████╗  ███████╗█████╗  ██████╔╝██║   ██║███████║   ██║   ██║██║   ██║██╔██╗ ██║");
       System.out.println("   ██║   ██║██║     ██╔═██╗ ██╔══╝     ██║       ██╔══██╗██╔══╝  ╚════██║██╔══╝  ██╔══██╗╚██╗ ██╔╝██╔══██║   ██║   ██║██║   ██║██║╚██╗██║");
-      System.out.print("     ██║   ██║╚██████╗██║  ██╗███████╗   ██║       ██║  ██║███████╗███████║███████╗██║  ██║ ╚████╔╝ ██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║");
+      System.out.println("   ██║   ██║╚██████╗██║  ██╗███████╗   ██║       ██║  ██║███████╗███████║███████╗██║  ██║ ╚████╔╝ ██║  ██║   ██║   ██║╚██████╔╝██║ ╚████║");
       System.out.println("   ╚═╝   ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝       ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═╝  ╚═╝  ╚═══╝  ╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝");
       System.out.println("\n\nSelect your ticket type: ");
       System.out.println("1. Economy $20.00");
@@ -26,47 +26,64 @@ public class terminalClass extends schedule {
         ticketType = input.nextInt();
 
         if (ticketType == 1) {
-          super.setType("Ticket Type: Economy");
-          super.setPrice(20.00);
+          setType("Ticket Type: Economy");
+          setPrice(20.00);
           break;
         } else if (ticketType == 2) {
-          super.setType("Ticket Type: VIP");
-          super.setPrice(100.00);
+          setType("Ticket Type: VIP");
+          setPrice(100.00);
           break;
         }
       } 
 
-      super.setAvailableSlot(10);
+      if (ticketType == 1) {
+        setType("Ticket Type: Economy");
+        setPrice(20.00);
+      } else if (ticketType == 2) {
+        setType("Ticket Type: VIP");
+        setPrice(100.00);
+      }
+
+      setAvailableSlot(10);
+      setAvailableSlot2(10);
 
       System.out.println("\nPick a schedule: ");
-      System.out.println("1. 8:00 AM" + " (" + super.getAvailableSlot() + " available)");
-      System.out.println("2. 3:00 PM" + " (" + super.getAvailableSlot() + " available)");
+      System.out.println("1. 9:00 AM" + " (" + getAvailableSlot() + " slots available)");
+      System.out.println("2. 1:00 PM" + " (" + getAvailableSlot2() + " slots available)\n");
       int schedule = input.nextInt();
 
       while ( schedule != 1 && schedule != 2 ) {
         System.out.println("\nInvalid input, please try again: ");
         System.out.println("Pick a schedule: ");
-        System.out.println("1. 8:00 AM" + "(" + super.getAvailableSlot() + " available)");
-        System.out.println("2. 3:00 PM" + super.getAvailableSlot() + " available");
+        System.out.println("1. 9:00 AM" + "(" + getAvailableSlot() + " slots available)");
+        System.out.println("2. 1:00 PM" + " (" + getAvailableSlot2() + " slots available)\n");
         schedule = input.nextInt();
       }
 
       if (schedule == 1) {
-        super.setTime("8:00 AM");
-        super.setAvailableSlot(super.getAvailableSlot() - 1);
+        setTime("9:00 AM");
+        setAvailableSlot(getAvailableSlot() - 1);
       } else if (schedule == 2) {
-        super.setTime("3:00 PM");
-        super.setAvailableSlot(super.getAvailableSlot() - 1);
+        setTime("1:00 PM");
+        setAvailableSlot2(super.getAvailableSlot() - 1);
       }
 
       while (true) {
         System.out.println("\nNo. of Tickets to Buy: ");
         int ticketCount = input.nextInt();
-        if (ticketCount > 0) {
-          super.setAmount(ticketCount);
-          break;
+        if (ticketCount > getAvailableSlot() || ticketCount > getAvailableSlot2()) {
+          System.out.println("Sorry, there are not enough tickets available.\n");
+          System.out.println("Do you still want to buy? (y/n)");
+          String answer = input.next();
+          if (answer.equals("y")) {
+            continue;
+          } else if (answer.equals("n")) {
+            System.out.println("\nThank you for using our service.\n");
+            System.exit(0);
+          }
         } else {
-          System.out.println("Invalid input, please try again: ");
+          setAmount(ticketCount);
+          break;
         }
       }
 
@@ -78,20 +95,24 @@ public class terminalClass extends schedule {
       System.out.println("███████ ██    ██ ██ ████ ██ ██ ████ ██ ███████ ██████    ████");
       System.out.println("     ██ ██    ██ ██  ██  ██ ██  ██  ██ ██   ██ ██   ██    ██    ██");
       System.out.println("███████  ██████  ██      ██ ██      ██ ██   ██ ██   ██    ██\n");
-      System.out.println("\n Ticket Type: ");
-      System.out.println(super.getType());
+      System.out.println(getType() + " Ticket");
       System.out.println("\nSchedule: ");
-      System.out.println(super.getTime());
+      System.out.println(getTime());
       System.out.println("\nNo. of Tickets: ");
-      System.out.println(super.getAmount());
-      super.pay();
-      super.change();
+      System.out.println(getAmount());
+      pay();
+      change();
       System.out.println("\nBuy Again? (Y/N)");
       String buyAgain = input.next();
+
       if (buyAgain.equals("Y") || buyAgain.equals("y")) {
         continue;
-      } else {
+      } else if (buyAgain.equals("N") || buyAgain.equals("n")) {
+        System.out.println("\nThank you for using our service.\n");
         break;
+      } else {
+        System.out.println("Invalid input, please try again: ");
+        buyAgain = input.next();
       }
     }
   }
