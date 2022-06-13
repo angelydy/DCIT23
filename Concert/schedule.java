@@ -1,6 +1,7 @@
 public class schedule extends ticket{
   private String time;
-  private int availableSlot;
+  private int availableSlot = 10;
+  private int availableSlot2 = 10;
 
   public String getTime() {
     return time;
@@ -19,10 +20,10 @@ public class schedule extends ticket{
   }
 
   public int getAvailableSlot2() {
-    return availableSlot;
+    return availableSlot2;
   }
 
-  public void setAvailableSlot2(int availableSlot) {
-    this.availableSlot = availableSlot;
+  public void setAvailableSlot2(int availableSlot2) {
+    this.availableSlot2 = availableSlot2;
   }
 }

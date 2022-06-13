@@ -13,7 +13,7 @@ public class payment {
   }
 
   public void pay() {
-    System.out.printf("\nAmount to pay is: $%.2f", totalAmount);
+    System.out.printf("\nAmount to pay is: $%.2f", getTotalAmount());
   }
 
   public void change() {

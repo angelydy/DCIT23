@@ -2,10 +2,6 @@ public class ticket extends payment {
   private String type;
   private int amount;
   private double price;
-  
-  public ticket() {
-    super.setTotalAmount(getPrice() * getAmount());
-  }
 
   public String getType() {
     return type;

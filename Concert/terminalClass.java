@@ -4,8 +4,14 @@ public class terminalClass extends schedule {
 
   public terminalClass() {
     Scanner input = new Scanner(System.in);
-
     while (true) {
+
+      if (getAvailableSlot() == 0 && getAvailableSlot2() == 0) {
+        System.out.println("\nSOLD OUT!");
+        System.out.println("Sorry, there are no more seats available");
+        break;
+      }
+
       System.out.println("\n████████╗██╗ ██████╗██╗  ██╗███████╗████████╗    ██████╗ ███████╗███████╗███████╗██████╗ ██╗   ██╗ █████╗ ████████╗██╗ ██████╗ ███╗   ██╗");
       System.out.println("╚══██╔══╝██║██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝    ██╔══██╗██╔════╝██╔════╝██╔════╝██╔══██╗██║   ██║██╔══██╗╚══██╔══╝██║██╔═══██╗████╗  ██║");
       System.out.println("   ██║   ██║██║     █████╔╝ █████╗     ██║       ██████╔╝█████╗  ███████╗█████╗  ██████╔╝██║   ██║███████║   ██║   ██║██║   ██║██╔██╗ ██║");
@@ -44,34 +50,24 @@ public class terminalClass extends schedule {
         setPrice(100.00);
       }
 
-      setAvailableSlot(10);
-      setAvailableSlot2(10);
-
       System.out.println("\nPick a schedule: ");
-      System.out.println("1. 9:00 AM" + " (" + getAvailableSlot() + " slots available)");
-      System.out.println("2. 1:00 PM" + " (" + getAvailableSlot2() + " slots available)\n");
+      System.out.println("1. 9:00 AM" + " (" + getAvailableSlot() + " tickets available)");
+      System.out.println("2. 1:00 PM" + " (" + getAvailableSlot2() + " tickets available)\n");
       int schedule = input.nextInt();
 
-      while ( schedule != 1 && schedule != 2 ) {
+      while ( schedule != 1 && schedule != 2) {
         System.out.println("\nInvalid input, please try again: ");
         System.out.println("Pick a schedule: ");
-        System.out.println("1. 9:00 AM" + "(" + getAvailableSlot() + " slots available)");
-        System.out.println("2. 1:00 PM" + " (" + getAvailableSlot2() + " slots available)\n");
+        System.out.println("1. 9:00 AM" + " (" + getAvailableSlot() + " tickets available)");
+        System.out.println("2. 1:00 PM" + " (" + getAvailableSlot2() + " tickets available)\n");
         schedule = input.nextInt();
-      }
-
-      if (schedule == 1) {
-        setTime("9:00 AM");
-        setAvailableSlot(getAvailableSlot() - 1);
-      } else if (schedule == 2) {
-        setTime("1:00 PM");
-        setAvailableSlot2(super.getAvailableSlot() - 1);
       }
 
       while (true) {
         System.out.println("\nNo. of Tickets to Buy: ");
         int ticketCount = input.nextInt();
-        if (ticketCount > getAvailableSlot() || ticketCount > getAvailableSlot2()) {
+        
+        if (ticketCount > getAvailableSlot()) {
           System.out.println("Sorry, there are not enough tickets available.\n");
           System.out.println("Do you still want to buy? (y/n)");
           String answer = input.next();
@@ -84,7 +80,30 @@ public class terminalClass extends schedule {
         } else {
           setAmount(ticketCount);
           break;
-        }
+        } 
+        
+        if (ticketCount > getAvailableSlot2()) {
+          System.out.println("Sorry, there are not enough tickets available.\n");
+          System.out.println("Do you still want to buy? (y/n)");
+          String answer = input.next();
+          if (answer.equals("y")) {
+            continue;
+          } else if (answer.equals("n")) {
+            System.out.println("\nThank you for using our service.\n");
+            System.exit(0);
+          }
+        } else {
+          setAmount(ticketCount);
+          break;
+        } 
+      }
+
+      if (schedule == 1) {
+        setTime("9:00 AM");
+        setAvailableSlot(getAvailableSlot() - getAmount());
+      } else if (schedule == 2) {
+        setTime("1:00 PM");
+        setAvailableSlot2(getAvailableSlot2() - getAmount());
       }
 
       //shows summary of transaction
@@ -100,9 +119,10 @@ public class terminalClass extends schedule {
       System.out.println(getTime());
       System.out.println("\nNo. of Tickets: ");
       System.out.println(getAmount());
+      setTotalAmount(getAmount() * getPrice());
       pay();
       change();
-      System.out.println("\nBuy Again? (Y/N)");
+      System.out.println("\n\nBuy Again? (Y/N)");
       String buyAgain = input.next();
 
       if (buyAgain.equals("Y") || buyAgain.equals("y")) {
