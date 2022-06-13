@@ -27,7 +27,7 @@ public class payment {
       payment = input.nextDouble();
     }
 
-    if (payment > getTotalAmount()) {
+    if (payment > getTotalAmount() || payment == getTotalAmount()) {
       change = payment - getTotalAmount();
       System.out.printf("\nTransaction successful, your change is: $%.2f", change);
     }
