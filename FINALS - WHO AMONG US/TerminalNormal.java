@@ -40,11 +40,16 @@ public class TerminalNormal extends Terminal {
             impostorGen1 = rand.nextInt(crewMemberNormal.length);
             impostorGen2 = rand.nextInt(crewMemberNormal.length);
         }
-        
-        System.out.println(crewMemberNormal[impostorGen1]);
-        System.out.println(crewMemberNormal[impostorGen2]);
 
-        while (crewNum > 3 && tasksNum > 0){
+        //System.out.println(crewMemberNormal[impostorGen1]);
+        //System.out.println(crewMemberNormal[impostorGen2]);
+        
+        while (true){
+
+            if (crewNum <= 3){
+                System.out.println("You Lose! " + crewMemberNormal[impostorGen1] +" and "+ crewMemberNormal[impostorGen2] + " are the Impostor\n ");
+                break;
+            }
         
             showActionBar();
             System.out.println("");
@@ -187,8 +192,8 @@ public class TerminalNormal extends Terminal {
                             System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                         }
                         System.out.println('\n');
-
-                        }
+                        System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
+                    }
                     }
                     
                        else if (playerTask == 1){
@@ -303,7 +308,7 @@ public class TerminalNormal extends Terminal {
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                             }
                             System.out.println('\n');
-    
+                            System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
                             }
                         }
                         
@@ -420,7 +425,7 @@ public class TerminalNormal extends Terminal {
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                             }
                             System.out.println('\n');
-    
+                            System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
                             }
                         }
 
@@ -536,7 +541,7 @@ public class TerminalNormal extends Terminal {
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                             }
                             System.out.println('\n');
-    
+                            System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
                             }
                         }
                 }
@@ -552,12 +557,7 @@ public class TerminalNormal extends Terminal {
                 System.out.println("Invalid Action Number!");
             } 
         }
-
-        if (crewNum <= 1){
-            System.out.println("You Lose!" + crewMemberNormal[impostorGen1] +" and "+ crewMemberNormal[impostorGen1] + " are the Impostor\n ");
-        }
-   
-}
+    }
 }
        
         
