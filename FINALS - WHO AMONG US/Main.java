@@ -6,7 +6,7 @@ public class Main {
 
         Tasks ta = new Tasks();
         Terminal te = new TerminalEasy(1, 7,6, ta);
-        Terminal tn = new TerminalNormal(2, 12,6, ta);
+        Terminal tn = new TerminalNormal(2, 12,5, ta);
         Terminal th = new TerminalHard(3, 15,5);
 
         te.showTitle1();

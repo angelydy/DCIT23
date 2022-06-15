@@ -27,9 +27,9 @@ public class TerminalNormal extends Terminal {
         public void actionBar(Tasks ta){
     
         String crewMemberNormal [] = {"Madeline", "Austin", "Sero", "Bindy", "Louie", "Mikey", "Becky",
-                                        "Carl", "Daniel", "Michael", "Anna", "Nick"};
+                                        "Carl", "Daniel", "Michael", "Anj", "Sia"};
         String crewMemberNormal1 [] = {"Madeline", "Austin", "Sero", "Bindy", "Louie", "Mikey", "Becky",
-                                        "Carl", "Daniel", "Michael", "Anna", "Nick"}; // create new to maintain the name of the crew
+                                        "Carl", "Daniel", "Michael", "Anj", "Sia"}; // create new to maintain the name of the crew
         ArrayList crewmembers = new ArrayList();               
         Random rand = new Random();
 
@@ -41,20 +41,21 @@ public class TerminalNormal extends Terminal {
             impostorGen2 = rand.nextInt(crewMemberNormal.length);
         }
 
-        //System.out.println(crewMemberNormal[impostorGen1]);
-        //System.out.println(crewMemberNormal[impostorGen2]);
+        System.out.println(crewMemberNormal[impostorGen1]);
+        System.out.println(crewMemberNormal[impostorGen2]);
         
-        while (true){
-
-            if (crewNum <= 3){
-                System.out.println("You Lose! " + crewMemberNormal[impostorGen1] +" and "+ crewMemberNormal[impostorGen2] + " are the Impostor\n ");
-                break;
-            }
+        while (crewNum > 4) {
         
             showActionBar();
             System.out.println("");
             System.out.print("Enter an action number: ");
             int actionNum = sc.nextInt();
+
+            while (actionNum < 1 && actionNum > 4) {
+                System.out.println("Invalid Input!");
+                System.out.print("Enter an action number: ");
+                actionNum = sc.nextInt();
+            }
 
             if (actionNum == 1){
                 //System.out.println(crewmembers);
@@ -71,7 +72,7 @@ public class TerminalNormal extends Terminal {
                 
                 int playerTask = (int)(Math.random()* 3);
 
-                if (tasksNum > 0 && crewNum > 1){
+                if (this.crewNum > 1){
 
                     if (playerTask == 0){
                         ta.playQuizGame();
@@ -88,16 +89,14 @@ public class TerminalNormal extends Terminal {
                                 crewKiller2 = (int)(Math.random()* crewNum);
                             }
 
-                            if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                            if(!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 && !crewmembers.contains(crewKiller1) && crewKiller2 != crewKiller1){
                                 crewmembers.add(crewKiller1); 
                             }
 
-                            if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                            if(!crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2 && !crewmembers.contains(crewKiller2) && crewKiller1 != crewKiller2){
                                 crewmembers.add(crewKiller2); 
                             }  
-                        
-                        
-                        
+                            
                         System.out.println("Remaining Task(s): " + tasksNum);
 
                         System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
@@ -119,6 +118,12 @@ public class TerminalNormal extends Terminal {
                         System.out.print( "Insert the index of who you think the impostor is:  ");
                         int impostorGuess = sc.nextInt();
 
+                        while (impostorGuess < 0 || impostorGuess > crewMemberNormal.length){
+                            System.out.println("Invalid Input!");
+                            System.out.print( "Insert the index of who you think the impostor is:  ");
+                            impostorGuess = sc.nextInt();
+                        }
+
                         while(crewmembers.contains(impostorGuess)){   /// loop that limits the user in killing the dead or ejected people
                             System.out.println(crewMemberNormal1[impostorGuess]+ " is already Dead \n");
                             System.out.print( "Insert the index of who you think the impostor is:  ");
@@ -129,6 +134,7 @@ public class TerminalNormal extends Terminal {
                                 break;
                             }
                         }
+
                             if (impostorGuess == impostorGen1 || impostorGuess == impostorGen2){
                                 System.out.println(crewMemberNormal[impostorGuess] + " is ejected!");
                                 System.out.println(crewMemberNormal[impostorGuess] + " is an impostor!");
@@ -144,11 +150,12 @@ public class TerminalNormal extends Terminal {
 
                                  crewNum -= 1;
                                  System.out.println("\n");
-                                 System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
+                                 System.out.println("Number of Crewmates Left: " + this.crewNum); //shows the number of crew member left
                             }
                             
                             if(impostorNum == 0 && impostorGuess == impostorGen1 || impostorNum == 0 && impostorGuess == impostorGen2 || impostorNum == 0 && impostorGuess == impostorGen1 || impostorNum == 0 && impostorGuess == impostorGen2){
                                 System.out.println("Congratulations You Won!\n");
+                                this.crewNum = 12;
                                 for (int i = 0 ; i < crewMemberNormal.length; i++){
                                     System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                                 }
@@ -168,11 +175,11 @@ public class TerminalNormal extends Terminal {
                                 crewKiller2 = (int)(Math.random()* crewNum);
                             }
 
-                            if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                            if(!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 && !crewmembers.contains(crewKiller1) && crewKiller2 != crewKiller1){
                                 crewmembers.add(crewKiller1); 
                             }
 
-                            if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                            if(!crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2 && !crewmembers.contains(crewKiller2) && crewKiller1 != crewKiller2){
                                 crewmembers.add(crewKiller2); 
                             }  
                             
@@ -192,7 +199,7 @@ public class TerminalNormal extends Terminal {
                             System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                         }
                         System.out.println('\n');
-                        System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
+                        System.out.println("Number of Crewmates Left: " + this.crewNum ); //shows the number of crew member left
                     }
                     }
                     
@@ -211,11 +218,11 @@ public class TerminalNormal extends Terminal {
                                     crewKiller2 = (int)(Math.random()* crewNum);
                                 }
     
-                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                if(!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 && !crewmembers.contains(crewKiller1) && crewKiller2 != crewKiller1){
                                     crewmembers.add(crewKiller1); 
                                 }
     
-                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                if(!crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2 && !crewmembers.contains(crewKiller2) && crewKiller1 != crewKiller2){
                                     crewmembers.add(crewKiller2); 
                                 }  
                             
@@ -262,11 +269,12 @@ public class TerminalNormal extends Terminal {
     
                                      crewNum -= 1;
                                      System.out.println("\n");
-                                     System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
+                                     System.out.println("Number of Crewmates Left: " + this.crewNum ); //shows the number of crew member left
                                 }
                                 
                                 if(impostorNum == 0 && impostorGuess == impostorGen1 || impostorNum == 0 && impostorGuess == impostorGen2 || impostorNum == 0 && impostorGuess == impostorGen1 || impostorNum == 0 && impostorGuess == impostorGen2){
                                     System.out.println("Congratulations You Won!\n");
+                                    this.crewNum = 12;
                                     for (int i = 0 ; i < crewMemberNormal.length; i++){
                                         System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                                     }
@@ -286,11 +294,11 @@ public class TerminalNormal extends Terminal {
                                     crewKiller2 = (int)(Math.random()* crewNum);
                                 }
     
-                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                if(!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 && !crewmembers.contains(crewKiller1) && crewKiller2 != crewKiller1){
                                     crewmembers.add(crewKiller1); 
                                 }
     
-                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                if(!crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2 && !crewmembers.contains(crewKiller2) && crewKiller1 != crewKiller2){
                                     crewmembers.add(crewKiller2); 
                                 }  
                                 
@@ -308,7 +316,7 @@ public class TerminalNormal extends Terminal {
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                             }
                             System.out.println('\n');
-                            System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
+                            System.out.println("Number of Crewmates Left: " + this.crewNum ); //shows the number of crew member left
                             }
                         }
                         
@@ -328,11 +336,11 @@ public class TerminalNormal extends Terminal {
                                     crewKiller2 = (int)(Math.random()* crewNum);
                                 }
     
-                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                if(!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 && !crewmembers.contains(crewKiller1) && crewKiller2 != crewKiller1){
                                     crewmembers.add(crewKiller1); 
                                 }
     
-                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                if(!crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2 && !crewmembers.contains(crewKiller2) && crewKiller1 != crewKiller2){
                                     crewmembers.add(crewKiller2); 
                                 }  
                             
@@ -379,11 +387,12 @@ public class TerminalNormal extends Terminal {
     
                                      crewNum -= 1;
                                      System.out.println("\n");
-                                     System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
+                                     System.out.println("Number of Crewmates Left: " + this.crewNum ); //shows the number of crew member left
                                 }
                                 
                                 if(impostorNum == 0 && impostorGuess == impostorGen1 || impostorNum == 0 && impostorGuess == impostorGen2 || impostorNum == 0 && impostorGuess == impostorGen1 || impostorNum == 0 && impostorGuess == impostorGen2){
                                     System.out.println("Congratulations You Won!\n");
+                                    this.crewNum = 12;
                                     for (int i = 0 ; i < crewMemberNormal.length; i++){
                                         System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                                     }
@@ -403,11 +412,11 @@ public class TerminalNormal extends Terminal {
                                     crewKiller2 = (int)(Math.random()* crewNum);
                                 }
     
-                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                if(!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 && !crewmembers.contains(crewKiller1) && crewKiller2 != crewKiller1){
                                     crewmembers.add(crewKiller1); 
                                 }
     
-                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                if(!crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2 && !crewmembers.contains(crewKiller2) && crewKiller1 != crewKiller2){
                                     crewmembers.add(crewKiller2); 
                                 }  
                                 
@@ -425,7 +434,7 @@ public class TerminalNormal extends Terminal {
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                             }
                             System.out.println('\n');
-                            System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
+                            System.out.println("Number of Crewmates Left: " + this.crewNum ); //shows the number of crew member left
                             }
                         }
 
@@ -444,11 +453,11 @@ public class TerminalNormal extends Terminal {
                                     crewKiller2 = (int)(Math.random()* crewNum);
                                 }
     
-                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                if(!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 && !crewmembers.contains(crewKiller1) && crewKiller2 != crewKiller1){
                                     crewmembers.add(crewKiller1); 
                                 }
     
-                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                if(!crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2 && !crewmembers.contains(crewKiller2) && crewKiller1 != crewKiller2){
                                     crewmembers.add(crewKiller2); 
                                 }  
                             
@@ -495,11 +504,12 @@ public class TerminalNormal extends Terminal {
     
                                      crewNum -= 1;
                                      System.out.println("\n");
-                                     System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
+                                     System.out.println("Number of Crewmates Left: " + this.crewNum ); //shows the number of crew member left
                                 }
                                 
                                 if(impostorNum == 0 && impostorGuess == impostorGen1 || impostorNum == 0 && impostorGuess == impostorGen2 || impostorNum == 0 && impostorGuess == impostorGen1 || impostorNum == 0 && impostorGuess == impostorGen2){
                                     System.out.println("Congratulations You Won!\n");
+                                    this.crewNum = 12;
                                     for (int i = 0 ; i < crewMemberNormal.length; i++){
                                         System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                                     }
@@ -519,11 +529,11 @@ public class TerminalNormal extends Terminal {
                                     crewKiller2 = (int)(Math.random()* crewNum);
                                 }
     
-                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                if(!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 && !crewmembers.contains(crewKiller1) && crewKiller2 != crewKiller1){
                                     crewmembers.add(crewKiller1); 
                                 }
     
-                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                if(!crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2 && !crewmembers.contains(crewKiller2) && crewKiller1 != crewKiller2){
                                     crewmembers.add(crewKiller2); 
                                 }  
                                 
@@ -541,7 +551,7 @@ public class TerminalNormal extends Terminal {
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
                             }
                             System.out.println('\n');
-                            System.out.println("Number of Crewmates Left: " + crewNum ); //shows the number of crew member left
+                            System.out.println("Number of Crewmates Left: " + this.crewNum ); //shows the number of crew member left
                             }
                         }
                 }
@@ -556,6 +566,15 @@ public class TerminalNormal extends Terminal {
             else{
                 System.out.println("Invalid Action Number!");
             } 
+        }
+
+        if (crewNum <= 4){
+            this.crewNum = 12;
+            for (int i = 0 ; i < crewMemberNormal.length; i++){
+                System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
+            }
+            System.out.println('\n');
+            System.out.println("You Lose! " + crewMemberNormal[impostorGen1] +" and "+ crewMemberNormal[impostorGen2] + " are the Impostor\n ");
         }
     }
 }
