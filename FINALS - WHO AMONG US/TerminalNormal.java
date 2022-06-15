@@ -77,24 +77,21 @@ public class TerminalNormal extends Terminal {
 
                             int crewKiller1 = (int)(Math.random()* crewNum);
                             int crewKiller2 = (int)(Math.random()* crewNum);
-                        
-                            while (true){
-                                if (crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
-                                    crewKiller1 = (int)(Math.random()* crewNum);
-                                    crewKiller2 = (int)(Math.random()* crewNum);
-                                }
 
-                                if (crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 || crewKiller1 == crewKiller2){
-                                    crewKiller1 = (int)(Math.random()* crewNum);
-                                    crewKiller2 = (int)(Math.random()* crewNum);
-                                }
-
-                                if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
-                                    crewmembers.add(crewKiller1);
-                                    crewmembers.add(crewKiller2);
-                                    break;
-                                }
+                            while (crewKiller1 == crewKiller2 || crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2) || crewKiller1 == impostorGen1 || crewKiller2 ==impostorGen2 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller1 == crewKiller2 && crewKiller2 == crewKiller1){
+                                crewKiller1 = (int)(Math.random()* crewNum);
+                                crewKiller2 = (int)(Math.random()* crewNum);
                             }
+
+                            if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                crewmembers.add(crewKiller1); 
+                            }
+
+                            if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                crewmembers.add(crewKiller2); 
+                            }  
+                        
+                        
                         
                         System.out.println("Remaining Task(s): " + tasksNum);
 
@@ -161,36 +158,30 @@ public class TerminalNormal extends Terminal {
                             int crewKiller2 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
 
                             // Loop that Limits the repetition of killed crew and suiciding impostors
-                            while (true){
-                                if (crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
-                                    crewKiller1 = (int)(Math.random()* crewNum);
-                                    crewKiller2 = (int)(Math.random()* crewNum);
-                                }
-
-                                if (crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 || crewKiller1 == crewKiller2){
-                                    crewKiller1 = (int)(Math.random()* crewNum);
-                                    crewKiller2 = (int)(Math.random()* crewNum);
-                                }
-
-                                if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
-                                    crewmembers.add(crewKiller1);
-                                    crewmembers.add(crewKiller2);
-                                    break;
-                                }
+                            while (crewKiller1 == crewKiller2 || crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2) || crewKiller1 == impostorGen1 || crewKiller2 ==impostorGen2 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller1 == crewKiller2 && crewKiller2 == crewKiller1){
+                                crewKiller1 = (int)(Math.random()* crewNum);
+                                crewKiller2 = (int)(Math.random()* crewNum);
                             }
+
+                            if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                crewmembers.add(crewKiller1); 
+                            }
+
+                            if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                crewmembers.add(crewKiller2); 
+                            }  
                             
                         System.out.println("Remaining Task(s): " + tasksNum);
 
                         System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
                         crewNum -= 1;
                         crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
+                        crewmembers.add(crewKiller1);
 
                         System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
                         crewNum -= 1;
                         crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
-
-                        System.out.println( " ");
-                        System.out.println("List of Crewmembers: ");
+                        crewmembers.add(crewKiller2);
                         
                         for (int i = 0 ; i < crewMemberNormal.length; i++){
                             System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
@@ -210,36 +201,28 @@ public class TerminalNormal extends Terminal {
                                 int crewKiller1 = (int)(Math.random()* crewNum);
                                 int crewKiller2 = (int)(Math.random()* crewNum);
                             
-                                while (true){
-                                    if (crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 || crewKiller1 == crewKiller2){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
-                                        crewmembers.add(crewKiller1);
-                                        crewmembers.add(crewKiller2);
-                                        break;
-                                    }
+                                while (crewKiller1 == crewKiller2 || crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2) || crewKiller1 == impostorGen1 || crewKiller2 ==impostorGen2 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller1 == crewKiller2 && crewKiller2 == crewKiller1){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
                                 }
+    
+                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                    crewmembers.add(crewKiller1); 
+                                }
+    
+                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                    crewmembers.add(crewKiller2); 
+                                }  
                             
                             System.out.println("Remaining Task(s): " + tasksNum);
     
                             System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
-    
-                            System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
-    
-                            System.out.println( " ");
-                            System.out.println("List of Crewmembers: ");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
+
+                        System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
                             
                             for (int i = 0 ; i < crewMemberNormal.length; i++){
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
@@ -293,36 +276,28 @@ public class TerminalNormal extends Terminal {
                                 int crewKiller2 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
     
                                 // Loop that Limits the repetition of killed crew and suiciding impostors
-                                while (true){
-                                    if (crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 || crewKiller1 == crewKiller2){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
-                                        crewmembers.add(crewKiller1);
-                                        crewmembers.add(crewKiller2);
-                                        break;
-                                    }
+                                while (crewKiller1 == crewKiller2 || crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2) || crewKiller1 == impostorGen1 || crewKiller2 ==impostorGen2 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller1 == crewKiller2 && crewKiller2 == crewKiller1){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
                                 }
+    
+                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                    crewmembers.add(crewKiller1); 
+                                }
+    
+                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                    crewmembers.add(crewKiller2); 
+                                }  
                                 
                             System.out.println("Remaining Task(s): " + tasksNum);
     
                             System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
-    
-                            System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
-    
-                            System.out.println( " ");
-                            System.out.println("List of Crewmembers: ");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
+
+                        System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
                             
                             for (int i = 0 ; i < crewMemberNormal.length; i++){
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
@@ -343,36 +318,28 @@ public class TerminalNormal extends Terminal {
                                 int crewKiller1 = (int)(Math.random()* crewNum);
                                 int crewKiller2 = (int)(Math.random()* crewNum);
                             
-                                while (true){
-                                    if (crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 || crewKiller1 == crewKiller2){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
-                                        crewmembers.add(crewKiller1);
-                                        crewmembers.add(crewKiller2);
-                                        break;
-                                    }
+                                while (crewKiller1 == crewKiller2 || crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2) || crewKiller1 == impostorGen1 || crewKiller2 ==impostorGen2 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller1 == crewKiller2 && crewKiller2 == crewKiller1){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
                                 }
+    
+                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                    crewmembers.add(crewKiller1); 
+                                }
+    
+                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                    crewmembers.add(crewKiller2); 
+                                }  
                             
                             System.out.println("Remaining Task(s): " + tasksNum);
     
                             System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
-    
-                            System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
-    
-                            System.out.println( " ");
-                            System.out.println("List of Crewmembers: ");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
+
+                        System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
                             
                             for (int i = 0 ; i < crewMemberNormal.length; i++){
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
@@ -426,36 +393,28 @@ public class TerminalNormal extends Terminal {
                                 int crewKiller2 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
     
                                 // Loop that Limits the repetition of killed crew and suiciding impostors
-                                while (true){
-                                    if (crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 || crewKiller1 == crewKiller2){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
-                                        crewmembers.add(crewKiller1);
-                                        crewmembers.add(crewKiller2);
-                                        break;
-                                    }
+                                while (crewKiller1 == crewKiller2 || crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2) || crewKiller1 == impostorGen1 || crewKiller2 ==impostorGen2 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller1 == crewKiller2 && crewKiller2 == crewKiller1){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
                                 }
+    
+                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                    crewmembers.add(crewKiller1); 
+                                }
+    
+                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                    crewmembers.add(crewKiller2); 
+                                }  
                                 
                             System.out.println("Remaining Task(s): " + tasksNum);
     
                             System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
-    
-                            System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
-    
-                            System.out.println( " ");
-                            System.out.println("List of Crewmembers: ");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
+
+                        System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
                             
                             for (int i = 0 ; i < crewMemberNormal.length; i++){
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
@@ -475,36 +434,28 @@ public class TerminalNormal extends Terminal {
                                 int crewKiller1 = (int)(Math.random()* crewNum);
                                 int crewKiller2 = (int)(Math.random()* crewNum);
                             
-                                while (true){
-                                    if (crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 || crewKiller1 == crewKiller2){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
-                                        crewmembers.add(crewKiller1);
-                                        crewmembers.add(crewKiller2);
-                                        break;
-                                    }
+                                while (crewKiller1 == crewKiller2 || crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2) || crewKiller1 == impostorGen1 || crewKiller2 ==impostorGen2 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller1 == crewKiller2 && crewKiller2 == crewKiller1){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
                                 }
+    
+                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                    crewmembers.add(crewKiller1); 
+                                }
+    
+                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                    crewmembers.add(crewKiller2); 
+                                }  
                             
                             System.out.println("Remaining Task(s): " + tasksNum);
     
                             System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
-    
-                            System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
-    
-                            System.out.println( " ");
-                            System.out.println("List of Crewmembers: ");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
+
+                        System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
                             
                             for (int i = 0 ; i < crewMemberNormal.length; i++){
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);
@@ -558,36 +509,28 @@ public class TerminalNormal extends Terminal {
                                 int crewKiller2 = (int)(Math.random()* crewNum); // Impostor will try to randomly kill
     
                                 // Loop that Limits the repetition of killed crew and suiciding impostors
-                                while (true){
-                                    if (crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2)){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (crewKiller1 == impostorGen1 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller2 == impostorGen2 || crewKiller1 == crewKiller2){
-                                        crewKiller1 = (int)(Math.random()* crewNum);
-                                        crewKiller2 = (int)(Math.random()* crewNum);
-                                    }
-    
-                                    if (!crewmembers.contains(crewKiller1) && crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller2) && crewKiller2 != impostorGen2) {
-                                        crewmembers.add(crewKiller1);
-                                        crewmembers.add(crewKiller2);
-                                        break;
-                                    }
+                                while (crewKiller1 == crewKiller2 || crewmembers.contains(crewKiller1) || crewmembers.contains(crewKiller2) || crewKiller1 == impostorGen1 || crewKiller2 ==impostorGen2 || crewKiller1 == impostorGen2 || crewKiller2 == impostorGen1 || crewKiller1 == crewKiller2 && crewKiller2 == crewKiller1){
+                                    crewKiller1 = (int)(Math.random()* crewNum);
+                                    crewKiller2 = (int)(Math.random()* crewNum);
                                 }
+    
+                                if(!crewmembers.contains(crewKiller1) || crewKiller1 != impostorGen1 || !crewmembers.contains(crewKiller1) ||crewKiller2 != crewKiller1){
+                                    crewmembers.add(crewKiller1); 
+                                }
+    
+                                if(!crewmembers.contains(crewKiller2) || crewKiller2 != impostorGen2 || !crewmembers.contains(crewKiller2) || crewKiller1 != crewKiller2){
+                                    crewmembers.add(crewKiller2); 
+                                }  
                                 
                             System.out.println("Remaining Task(s): " + tasksNum);
     
                             System.out.println( crewMemberNormal[crewKiller1]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
-    
-                            System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
-                            crewNum -= 1;
-                            crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
-    
-                            System.out.println( " ");
-                            System.out.println("List of Crewmembers: ");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller1] = crewMemberNormal[crewKiller1] + " [DEAD]"; 
+
+                        System.out.println( crewMemberNormal[crewKiller2]  + " has been killed");
+                        crewNum -= 1;
+                        crewMemberNormal[crewKiller2] = crewMemberNormal[crewKiller2] + " [DEAD]"; 
                             
                             for (int i = 0 ; i < crewMemberNormal.length; i++){
                                 System.out.println("CrewMember No. [ "+i+" ] " + crewMemberNormal[i]);

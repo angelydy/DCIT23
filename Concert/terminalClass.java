@@ -67,7 +67,22 @@ public class terminalClass extends schedule {
         System.out.println("\nNo. of Tickets to Buy: ");
         int ticketCount = input.nextInt();
         
-        if (ticketCount > getAvailableSlot() || ticketCount == 0 || ticketCount > getAvailableSlot2()) {
+        if (ticketCount > getAvailableSlot() || ticketCount == 0) {
+          System.out.println("Sorry, there are not enough tickets available.\n");
+          System.out.println("Do you still want to buy? (y/n)");
+          String answer = input.next();
+          if (answer.equals("y")) {
+            continue;
+          } else if (answer.equals("n")) {
+            System.out.println("\nThank you for using our service.\n");
+            System.exit(0);
+          }
+        } else if (ticketCount < getAvailableSlot() && ticketCount > 0 || ticketCount == 10) {
+          setAmount(ticketCount);
+          break;
+        } 
+
+        if (ticketCount > getAvailableSlot2() || ticketCount == 0) {
           System.out.println("Sorry, there are not enough tickets available.\n");
           System.out.println("Do you still want to buy? (y/n)");
           String answer = input.next();
