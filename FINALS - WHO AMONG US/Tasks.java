@@ -221,6 +221,7 @@ public void jumbledWords() {
       letters[index1] = letters[index2];
       letters[index2] = temp;
     }
+    
     String jumbleWord = new String(letters);
     System.out.println("||--------------------------------------------||");
     System.out.println("\tThe jumble word is: " + jumbleWord);
