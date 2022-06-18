@@ -1,7 +1,29 @@
-    import java.util.*;
+import java.util.*;
 public class Tasks {
     
     public boolean status;
+
+
+    public void showTitle1(){
+        System.out.print("\n");
+		System.out.print(" _____________________________________________________________________________________________________________\n|                                                                                                             |");
+		System.out.print("\n|                                                                                                             |\n");
+		System.out.print("|      █     █░ ██░ ██  ▒█████      ▄▄▄       ███▄ ▄███▓ ▒█████   ███▄    █   ▄████     █    ██   ██████      |\n");
+		System.out.print("|     ▓█░ █ ░█░▓██░ ██▒▒██▒  ██▒   ▒████▄    ▓██▒▀█▀ ██▒▒██▒  ██▒ ██ ▀█   █  ██▒ ▀█▒    ██  ▓██▒▒██    ▒      |\n");
+		System.out.print("|     ▒█░ █ ░█ ▒██▀▀██░▒██░  ██▒   ▒██  ▀█▄  ▓██    ▓██░▒██░  ██▒▓██  ▀█ ██▒▒██░▄▄▄░   ▓██  ▒██░░ ▓██▄        |\n");
+		System.out.print("|     ░█░ █ ░█ ░▓█ ░██ ▒██   ██░   ░██▄▄▄▄██ ▒██    ▒██ ▒██   ██░▓██▒  ▐▌██▒░▓█  ██▓   ▓▓█  ░██░  ▒   ██▒     |\n");
+		System.out.print("|     ░░██▒██▓ ░▓█▒░██▓░ ████▓▒░    ▓█   ▓██▒▒██▒   ░██▒░ ████▓▒░▒██░   ▓██░░▒▓███▀▒   ▒▒█████▓ ▒██████▒▒     |\n");
+		System.out.print("|     ░ ▓░▒ ▒   ▒ ░░▒░▒░ ▒░▒░▒░     ▒▒   ▓▒█░░ ▒░   ░  ░░ ▒░▒░▒░ ░ ▒░   ▒ ▒  ░▒   ▒    ░▒▓▒ ▒ ▒ ▒ ▒▓▒ ▒ ░     |\n");
+		System.out.print("|       ▒ ░ ░   ▒ ░▒░ ░  ░ ▒ ▒░      ▒   ▒▒ ░░  ░      ░  ░ ▒ ▒░ ░ ░░   ░ ▒░  ░   ░    ░░▒░ ░ ░ ░ ░▒  ░ ░     |\n");
+		System.out.print("|       ░   ░   ░  ░░ ░░ ░ ░ ▒       ░   ▒   ░      ░   ░ ░ ░ ▒     ░   ░ ░ ░ ░   ░     ░░░ ░ ░ ░  ░  ░       |\n");
+		System.out.print("|         ░     ░  ░  ░    ░ ░           ░  ░       ░       ░ ░           ░       ░       ░           ░       |\n");
+		System.out.print("|                                                                                                             |\n");
+		System.out.print("|     -----     -----     -----     -----     The Console Version     -----     -----     -----     -----     |\n");
+		System.out.print("|                                                                                                             |\n");
+		System.out.print("|_____________________________________________________________________________________________________________|\n");
+		System.out.print("\n");
+
+    }
 
 public void playQuizGame() {
     
@@ -21,10 +43,15 @@ public void playQuizGame() {
 
         switch(quest){
             case 1:
-            System.out.println("There are three state of matter: Solid, Gas and?");
-        
+            System.out.println("             ________________________________________________________________");
+            System.out.println("            |                                                               |");    
+            System.out.println("            |       There are three state of matter: Solid, Gas and?        |");
+            System.out.println("            |                                                               |");
+            System.out.println("            |_______________________________________________________________|");   
+            System.out.println("\n");
+            
             while (true) {
-            System.out.print("Please input your answer: ");
+            System.out.print("                       Please input your answer: ");
             String answer = input.next();
             if (!answer.equalsIgnoreCase("liquid")){
                 System.out.println("You have entered an incorrect answer.");
@@ -39,10 +66,16 @@ public void playQuizGame() {
             break;
 
             case 2:
-            System.out.println("The first odd numbers are 1,3,5,7 and ?");
+            
+            System.out.println("             ________________________________________________________________");
+            System.out.println("            |                                                               |");    
+            System.out.println("            |            The first odd numbers are 1,3,5,7 and ?            |");
+            System.out.println("            |                                                               |");
+            System.out.println("            |_______________________________________________________________|"); 
+            System.out.println("\n");
             
             while (true) {
-                System.out.print("Please input your answer: ");
+            System.out.print("                          Please input your answer: ");
                 int answer = input.nextInt();
                 if (answer != 9){
                     System.out.println("You have entered an incorrect answer.");
@@ -56,10 +89,16 @@ public void playQuizGame() {
             } 
             break;
             case 3:
-            System.out.println("Soft:Hard ; Cold: ");
-        
+            
+            System.out.println("             ________________________________________________________________");
+            System.out.println("            |                                                               |");    
+            System.out.println("            |                     Soft:Hard ;   Cold: _____                 |");
+            System.out.println("            |                                                               |");
+            System.out.println("            |_______________________________________________________________|"); 
+            System.out.println("\n");
+            
             while (true) {
-                System.out.print("Please input your answer: ");
+                System.out.print("                              Please input your answer: ");
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("hot")){
                     System.out.println("You have entered an incorrect answer.");
@@ -73,10 +112,16 @@ public void playQuizGame() {
             } 
             break;
             case 4:
-            System.out.println("In a jack n poy game, Scissor can win against? ");
+            
+            System.out.println("             ________________________________________________________________");
+            System.out.println("            |                                                               |");    
+            System.out.println("            |           In a jack n poy game, Scissor can win against?      |");
+            System.out.println("            |                                                               |");
+            System.out.println("            |_______________________________________________________________|"); 
+            System.out.println("\n");
     
-             while (true) {
-                System.out.print("Please input your answer: ");
+            while (true) {
+            System.out.print("                          Please input your answer: ");
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("paper")){
                 System.out.println("You have entered an incorrect answer.");
@@ -90,10 +135,16 @@ public void playQuizGame() {
             } 
             break;
             case 5:
-            System.out.println("Give an even number.");
-            
+
+            System.out.println("     ________________________________________________________________");
+            System.out.println("    |                                                               |");    
+            System.out.println("    |                       Give an even number.                    |");
+            System.out.println("    |                                                               |");
+            System.out.println("    |_______________________________________________________________|"); 
+            System.out.println("\n");
+    
             while (true) {
-                System.out.print("Please input your answer: ");
+            System.out.print("                     Please input your answer: ");
                 int answer = input.nextInt();
                 if (answer % 2 != 0){
                     System.out.println("You have entered an incorrect answer.");
@@ -107,10 +158,17 @@ public void playQuizGame() {
             } 
             break;
             case 6:
-            System.out.println("Pencil: Paper ; Chalk: ");
+            
+            System.out.println("            ________________________________________________________________");
+            System.out.println("            |                                                               |");    
+            System.out.println("            |                    Pencil: Paper ; Chalk:_______              |");
+            System.out.println("            |                                                               |");
+            System.out.println("            |_______________________________________________________________|"); 
+            System.out.println("\n");
+            
             
             while (true) {
-                System.out.print("Please input your answer: ");
+            System.out.print("                              Please input your answer: ");
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("Blackboard")){
                     System.out.println("You have entered an incorrect answer.");
@@ -124,10 +182,17 @@ public void playQuizGame() {
             } 
             break;
             case 7:
-            System.out.println("In a jack n poy game, Stone can win against?");
+
+            System.out.println("             ________________________________________________________________");
+            System.out.println("            |                                                               |");    
+            System.out.println("            |          In a jack n poy game, Stone can win against?         |");
+            System.out.println("            |                                                               |");
+            System.out.println("            |_______________________________________________________________|"); 
+            System.out.println("\n");
+
             
             while (true) {
-                System.out.print("Please input your answer: ");
+            System.out.print("                             Please input your answer: ");
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("scissor")){
                     System.out.println("You have entered an incorrect answer.");
@@ -141,10 +206,16 @@ public void playQuizGame() {
             } 
             break;
             case 8:
-            System.out.println("The three primary colors are red, blue, and? ");
+            
+            System.out.println("             ________________________________________________________________");
+            System.out.println("            |                                                               |");    
+            System.out.println("            |          The three primary colors are red, blue, and?         |");
+            System.out.println("            |                                                               |");
+            System.out.println("            |_______________________________________________________________|"); 
+            System.out.println("\n");
             
             while (true) {
-                System.out.print("Please input your answer: ");
+            System.out.print("                              Please input your answer: ");
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("yellow")){
                     System.out.println("You have entered an incorrect answer.");
@@ -158,10 +229,16 @@ public void playQuizGame() {
             } 
             break;
             case 9:
-            System.out.println("Plants need sunlight, nutrients(soil) and ___ to grow. ");
+            
+            System.out.println("             ________________________________________________________________");
+            System.out.println("            |                                                               |");    
+            System.out.println("            |     Plants need sunlight, nutrients(soil) and ___ to grow.    |");
+            System.out.println("            |                                                               |");
+            System.out.println("            |_______________________________________________________________|"); 
+            System.out.println("\n");
             
             while (true) {
-                System.out.print("Please input your answer: ");
+                System.out.print("                      Please input your answer: ");
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("water")){
                     System.out.println("You have entered an incorrect answer.");
@@ -175,10 +252,16 @@ public void playQuizGame() {
             } 
             break;
             case 10:
-            System.out.println(" What is the opposite of singular? ");
+            
+            System.out.println("             ________________________________________________________________");
+            System.out.println("            |                                                               |");    
+            System.out.println("            |               What is the opposite of singular?               |");
+            System.out.println("            |                                                               |");
+            System.out.println("            |_______________________________________________________________|"); 
+            System.out.println("\n");
             
             while (true) {
-                System.out.print("Please input your answer: ");
+                System.out.print("                          Please input your answer: ");
                 String answer = input.next();
                 if (!answer.equalsIgnoreCase("plural")){
                     System.out.println("You have entered an incorrect answer.");
@@ -186,7 +269,7 @@ public void playQuizGame() {
                 }
                 else {
                     System.out.println("You have entered a correct answer.");
-                    status = true;
+                    status = false;
                     break;
                 }
             } 
@@ -206,7 +289,6 @@ public void jumbledWords() {
     System.out.println("\t╚════╝  ╚═════╝ ╚═╝     ╚═╝╚═════╝ ╚══════╝╚══════╝╚═════╝      ╚══╝╚══╝  ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝");
     System.out.print("\n");
 
-
     String word = "";
     String[] words = {"apple", "banana", "orange", "coconut", "strawberry", "raspberry", "blueberry", "blackberry", 
         "cherry", "grape", "kiwi", "mango", "papaya", "pineapple", "watermelon"};
@@ -214,32 +296,45 @@ public void jumbledWords() {
     word = words[wordIndex];
     String jumble = word.toLowerCase();
     char[] letters = jumble.toCharArray();
+
     for (int i = 0; i < letters.length; i++) {
       int index1 = (int) (Math.random() * letters.length);
       int index2 = (int) (Math.random() * letters.length);
+      int index3 = (int) (Math.random() * letters.length);
       char temp = letters[index1];
       letters[index1] = letters[index2];
       letters[index2] = temp;
+      letters[index3] = letters[index3];
     }
-    
+
     String jumbleWord = new String(letters);
-    System.out.println("||--------------------------------------------||");
-    System.out.println("\tThe jumble word is: " + jumbleWord);
-    System.out.println("||--------------------------------------------||");
-    System.out.println("||--------------------------------------------||");
-    System.out.println("\tCan you guess the original word?");
-    System.out.println("||--------------------------------------------||\n");
+    System.out.println("             ________________________________________________________________");
+    System.out.println("            |                                                               |");    
+    System.out.println("                            The jumble word is: " + jumbleWord             );
+    System.out.println("            |                                                               |");
+    System.out.println("            |_______________________________________________________________|"); 
+    System.out.println("\n");
+
+    System.out.print("                          Can you guess the original word: ");
     Scanner scanner = new Scanner(System.in);
     String guess = scanner.nextLine();
     guess = guess.toLowerCase();
     if (guess.equals(word)) {
-      System.out.println("\n||--------------------------------------------||");
-      System.out.println("That's it! You guessed the original word!");
-      status = true;
+        System.out.println("             ________________________________________________________________");
+        System.out.println("            |                                                               |");    
+        System.out.println("            |          That's it! You guessed the original word!            |");
+        System.out.println("            |                                                               |");
+        System.out.println("            |_______________________________________________________________|"); 
+        System.out.println("\n");
+        status = true;
     } else {
-      System.out.println("\n||--------------------------------------------||");
-      System.out.println("Sorry, that's not it. The word is " + word + ".");
-      status = false;
+        System.out.println("             ________________________________________________________________");
+        System.out.println("            |                                                               |");    
+        System.out.println("                        Sorry, that's not it. The word is " + word + ".      ");
+        System.out.println("            |                                                               |");
+        System.out.println("            |_______________________________________________________________|"); 
+        System.out.println("\n");
+        status = false;
     }
 }
 
